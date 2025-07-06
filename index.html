@@ -43,9 +43,9 @@
         <ul>
           <li><a href="#hero" class="active">Home<br></a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
+          <li><a href="#services">Expertise</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <!--<li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Dropdown 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -61,7 +61,7 @@
               <li><a href="#">Dropdown 3</a></li>
               <li><a href="#">Dropdown 4</a></li>
             </ul>
-          </li>
+          </li> -->
           <li><a href="#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -79,7 +79,7 @@
 
       <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
         <h2>I am Sheldon Crasta</h2>
-        <p><span class="typed" data-typed-items="Business Analyst, Data-driven solutions, Analytical Thinker, Problem Solver"></span></p>
+        <p><span class="typed" data-typed-items="Business Analyst, Data Strategist, Product Strategist, Efficiency Specialist, Problem Solver"></span></p>
       </div>
 
     </section><!-- /Hero Section -->
@@ -94,7 +94,8 @@
 
             <div class="row justify-content-between gy-4">
               <div class="col-lg-5">
-                <img src="assets/img/Profile Image/ProfileImg1.png" class="img-fluid" alt="">
+                <!-- img src="assets/img/Profile Image/ProfileImg1.png" class="img-fluid" alt="" -->
+				<img id="profileImage" src="" class="img-fluid" alt="Profile Image">
               </div>
               <div class="col-lg-7 about-info">
                 <p><strong>Name: </strong> <span>Sheldon Crasta</span></p>
@@ -109,30 +110,37 @@
               <h5>Skills</h5>
 
               <div class="progress">
-                <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
+                <span class="skill"><span>Communication </span> <i class="val">75%</i></span>
                 <div class="progress-bar-wrap">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div><!-- End Skills Item -->
-
-              <div class="progress">
-                <span class="skill"><span>CSS</span> <i class="val">90%</i></span>
+			  
+			  <div class="progress">
+                <span class="skill"><span>Adaptability </span> <i class="val">100%</i></span>
                 <div class="progress-bar-wrap">
                   <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div><!-- End Skills Item -->
 
               <div class="progress">
-                <span class="skill"><span>JavaScript</span> <i class="val">75%</i></span>
+                <span class="skill"><span>Relationship-building</span> <i class="val">90%</i></span>
                 <div class="progress-bar-wrap">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div><!-- End Skills Item -->
 
               <div class="progress">
-                <span class="skill"><span>Photoshop</span> <i class="val">55%</i></span>
+                <span class="skill"><span>SQL</span> <i class="val">70%</i></span>
                 <div class="progress-bar-wrap">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
+
+              <div class="progress">
+                <span class="skill"><span>Excel</span> <i class="val">85%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div><!-- End Skills Item -->
 
@@ -248,49 +256,65 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>Expertise</h2>
+        <p>Hands-on expertise in a range of key platforms and technologies, including..</p>
       </div><!-- End Section Title -->
 
       <div class="container">
 
         <div class="row gy-4">
+		
+		<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div>
+                <img src="assets/img/Products/Android_Studio.png" alt="" class="circle-sql-image" data-aos="fade-in">
+              </div>
+              	<h3>Andriod Studio</h3>
+              </div>
+          </div><!-- End Service Item -->
+		  
+		  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div>
+                <img src="assets/img/Products/Excel.png" alt="" class="circle-sql-image" data-aos="fade-in">
+              </div>
+              	<h3>MS Excel</h3>
+              </div>
+          </div><!-- End Service Item -->
+		  
+		  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div>
+                <img src="assets/img/Products/Java.png" alt="" class="circle-sql-image" data-aos="fade-in">
+              </div>
+              	<h3>Java</h3>
+              </div>
+          </div><!-- End Service Item -->
+		  
+		  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div>
+                <img src="assets/img/Products/MySQL.png" alt="" class="circle-sql-image" data-aos="fade-in">
+              </div>
+              	<h3>MySQL</h3>
+              </div>
+          </div><!-- End Service Item -->	
+		  
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item  position-relative">
-              <div class="icon">
-                <i class="bi bi-activity"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Nesciunt Mete</h3>
-              </a>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+				<div>
+					<img src="assets/img/Products/SQLServer.png" alt="" class="circle-sql-image" data-aos="fade-in">
+				</div>
+              
+                <h3>SQL Server</h3>
+                <!-- <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>-->
             </div>
           </div><!-- End Service Item -->
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-broadcast"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Eosle Commodi</h3>
-              </a>
-              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-easel"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Ledo Markt</h3>
-              </a>
-              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-            </div>
-          </div><!-- End Service Item -->
+           	  
+		  
+		  <!-- End Service Item
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item position-relative">
@@ -305,33 +329,7 @@
             </div>
           </div><!-- End Service Item -->
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-calendar4-week"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Velit Doloremque</h3>
-              </a>
-              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-chat-square-text"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Dolori Architecto</h3>
-              </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-        </div>
+          </div>
 
       </div>
 
@@ -779,7 +777,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>I’m always open to exploring new opportunities and connections. Drop me a message, and I’ll get back to you soon.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -792,17 +790,17 @@
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
                   <h3>Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
+                  <p>Marol, Andheri, Mumbai-400059</p>
                 </div>
               </div>
             </div><!-- End Info Item -->
 
             <div class="col-lg-4">
               <div class="info-item d-flex align-items-center">
-                <i class="bi bi-telephone flex-shrink-0"></i>
+                <i class="bi bi-whatsapp flex-shrink-0"></i>
                 <div>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
+                  <h3>Reach Me</h3>
+                  <p>+91 89791890751</p>
                 </div>
               </div>
             </div><!-- End Info Item -->
@@ -811,8 +809,8 @@
               <div class="info-item d-flex align-items-center">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
-                  <h3>Email Us</h3>
-                  <p>info@example.com</p>
+                  <h3>Email Me</h3>
+                  <p>sheldonvcrasta@gmail.com</p>
                 </div>
               </div>
             </div><!-- End Info Item -->
@@ -859,8 +857,12 @@
   <footer id="footer" class="footer accent-background">
 
     <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">DevFolio</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
       <div class="social-links d-flex justify-content-center">
         <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -868,13 +870,12 @@
         <a href=""><i class="bi bi-instagram"></i></a>
         <a href=""><i class="bi bi-linkedin"></i></a>
       </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+      
+	  
+	  <div class="copyright text-center ">
+        <p>© <span>Copyright 2025</span> <strong class="px-1 sitename">Sheldon Crasta</strong> <span>All Rights Reserved</span></p>
       </div>
+	  
     </div>
 
   </footer>
@@ -884,6 +885,8 @@
 
   <!-- Preloader -->
   <div id="preloader"></div>
+  
+  
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -899,7 +902,22 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  
 
 </body>
+
+<script>
+    // Number of profile images available
+    const imageCount = 5;  // Total images: ProfileImg1.png to ProfileImg5.png
+
+    // Generate a random number between 1 and imageCount
+    const randomImageIndex = Math.floor(Math.random() * imageCount) + 1;
+
+    // Construct the image path dynamically
+    const imagePath = `assets/img/Profile Image/ProfileImg${randomImageIndex}.png`;
+
+    // Set the random image as the src of the img element
+    document.getElementById('profileImage').src = imagePath;
+</script>
 
 </html>

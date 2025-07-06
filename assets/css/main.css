@@ -456,7 +456,7 @@ h6 {
 }
 
 .footer .copyright p {
-  margin-bottom: 0;
+  margin-top: 20px;
 }
 
 .footer .social-links {
@@ -483,7 +483,7 @@ h6 {
 }
 
 .footer .credits {
-  margin-top: 10px;
+  margin-top: 0px;
   font-size: 13px;
   text-align: center;
 }
@@ -874,9 +874,9 @@ section,
   color: var(--contrast-color);
   background: var(--accent-color);
   margin: 0;
-  width: 64px;
-  height: 64px;
-  border-radius: 50px;
+  width: 150px;
+  height: 100px;
+  border-radius: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -887,8 +887,8 @@ section,
 
 .services .service-item h3 {
   font-weight: 700;
-  margin: 10px 0 15px 0;
-  font-size: 22px;
+  margin: 50px 0 15px 0;
+  font-size: 25px;
   transition: ease-in-out 0.3s;
 }
 
@@ -1628,3 +1628,10 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+.circle-sql-image {
+    width: auto; /* Set width of the circle */
+    height: 150px; /* Set height of the circle */
+    border-radius: 0%; /* Make the image circular */
+     /* Ensure the image covers the circle without distortion */
+  }
