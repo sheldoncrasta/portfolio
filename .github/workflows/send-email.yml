@@ -1,33 +1,59 @@
-name: Send Email via PHP (Portfolio)
+name: Send Email via Gmail SMTP
 
 on:
-  push:
-    branches:
-      - main
+  repository_dispatch:
+    types: [form_submission]  # This event type is triggered by the form submission
 
 jobs:
   send-email:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.0'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-    - name: Install dependencies (if using Composer)
-      run: |
-        if [ -f composer.json ]; then
-          composer install
-        fi
+      - name: Install dependencies
+        run: |
+          npm install nodemailer
 
-    - name: Send email via PHP (contact form)
-      env:
-        EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
-        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-      run: |
-        # Run the contact.php script from the forms folder
-        php forms/contact.php
+      - name: Send Email via Gmail
+        env:
+          GMAIL_USER: ${{ secrets.EMAIL_USERNAME }}
+          GMAIL_APP_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: |
+          # Simple Node.js script to send email using Gmail SMTP
+          echo "
+          const nodemailer = require('nodemailer');
+          
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: process.env.GMAIL_USER,
+              pass: process.env.GMAIL_APP_PASSWORD
+            }
+          });
+
+          const mailOptions = {
+            from: process.env.GMAIL_USER,
+            to: 'sheldoncrasta828@gmail.com',  # replace with the recipient email
+            subject: process.env.subject,  # form data will be passed
+            text: \`Message from: \${process.env.name}
+            Email: \${process.env.email}
+
+            \${process.env.message}\`
+          };
+
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              console.log('Error:', error);
+            } else {
+              console.log('Email sent:', info.response);
+            }
+          });
+          " > send-email.js
+
+          node send-email.js

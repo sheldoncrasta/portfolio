@@ -642,35 +642,32 @@
           </div>
         </div>
 
-        <form action="https://sheldoncrasta.github.io/portfolio/forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
-          <div class="row gy-4">
+        <form action="#" method="post" id="contact-form">
+		  <div class="row gy-4">
+			<div class="col-md-6">
+			  <input type="text" name="name" class="form-control" placeholder="Your Name" required="" />
+			</div>
 
-            <div class="col-md-6">
-              <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-            </div>
+			<div class="col-md-6">
+			  <input type="email" class="form-control" name="email" placeholder="Your Email" required="" />
+			</div>
 
-            <div class="col-md-6 ">
-              <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-            </div>
+			<div class="col-md-12">
+			  <input type="text" class="form-control" name="subject" placeholder="Subject" required="" />
+			</div>
 
-            <div class="col-md-12">
-              <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-            </div>
+			<div class="col-md-12">
+			  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+			</div>
 
-            <div class="col-md-12">
-              <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-            </div>
-
-            <div class="col-md-12 text-center">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-
-              <button type="submit">Send Message</button>
-            </div>
-
-          </div>
-        </form><!-- End Contact Form -->
+			<div class="col-md-12 text-center">
+			  <div class="loading">Loading</div>
+			  <div class="error-message"></div>
+			  <div class="sent-message">Your message has been sent. Thank you!</div>
+			  <button type="submit">Send Message</button>
+			</div>
+		  </div>
+		</form><!-- End Contact Form -->
 
       </div>
 
@@ -771,5 +768,39 @@
 
     // Set the interval to change the image every 5 seconds (5000 ms)
     setInterval(updateImage, 120000);
+</script>
+<script>
+  // Add event listener to the form submission
+  document.querySelector('#contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message')
+    };
+
+    // Make a POST request to GitHub API to trigger the GitHub Action workflow
+    fetch('https://api.github.com/repos/sheldoncrasta/portfolio/dispatches', {
+      method: 'POST',
+      headers: {
+        'Authorization': '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', // Replace this with your GitHub Token
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        event_type: 'form_submission', // Custom event name (you can change it)
+        client_payload: data
+      })
+    })
+    .then(response => response.json())
+    .then(() => {
+      alert('Message sent successfully!');
+    })
+    .catch(() => {
+      alert('Something went wrong. Please try again later.');
+    });
+  });
 </script>
 </html>
