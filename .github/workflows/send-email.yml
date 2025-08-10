@@ -1,0 +1,33 @@
+name: Send Email via PHP (Portfolio)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+
+    - name: Install dependencies (if using Composer)
+      run: |
+        if [ -f composer.json ]; then
+          composer install
+        fi
+
+    - name: Send email via PHP (contact form)
+      env:
+        EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      run: |
+        # Run the contact.php script from the forms folder
+        php forms/contact.php
