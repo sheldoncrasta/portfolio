@@ -642,32 +642,34 @@
           </div>
         </div>
 
-        <form action="#" method="post" id="contact-form">
-		  <div class="row gy-4">
-			<div class="col-md-6">
-			  <input type="text" name="name" class="form-control" placeholder="Your Name" required="" />
+        <form id="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLScltQNaknEDOr6SSiit59jdI1PvhFX3YXZu8Xud24ZZr15vGA/formResponse" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
+          <div class="row gy-4">
+
+            <div class="col-md-6">
+              <input type="text" name="entry.354299072" class="form-control" placeholder="Your Name" required="">
+            </div>
+
+            <div class="col-md-6 ">
+              <input type="email" class="form-control" name="entry.994086400" placeholder="Your Email" required="">
+            </div>
+
+            <div class="col-md-12">
+              <input type="text" class="form-control" name="entry.2100265997" placeholder="Subject" required="">
+            </div>
+
+            <div class="col-md-12">
+              <textarea class="form-control" name="entry.2073610435" rows="6" placeholder="Message" required=""></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+				<div class="loading" style="display: none;">Loading...</div>
+				<div class="error-message" style="display: none;">There was an error while sending your message. You can try sending an email directly to sheldonvcrasta@gmail.com.</div>
+				<div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
+				<button type="submit">Send Message</button>
 			</div>
 
-			<div class="col-md-6">
-			  <input type="email" class="form-control" name="email" placeholder="Your Email" required="" />
-			</div>
-
-			<div class="col-md-12">
-			  <input type="text" class="form-control" name="subject" placeholder="Subject" required="" />
-			</div>
-
-			<div class="col-md-12">
-			  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-			</div>
-
-			<div class="col-md-12 text-center">
-			  <div class="loading">Loading</div>
-			  <div class="error-message"></div>
-			  <div class="sent-message">Your message has been sent. Thank you!</div>
-			  <button type="submit">Send Message</button>
-			</div>
-		  </div>
-		</form><!-- End Contact Form -->
+          </div>
+        </form><!-- End Contact Form -->
 
       </div>
 
@@ -718,7 +720,7 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/typed.js/typed.umd.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
@@ -769,38 +771,32 @@
     // Set the interval to change the image every 5 seconds (5000 ms)
     setInterval(updateImage, 120000);
 </script>
+
 <script>
-  // Add event listener to the form submission
-  document.querySelector('#contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-    const formData = new FormData(event.target);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      subject: formData.get('subject'),
-      message: formData.get('message')
-    };
+  const form = e.target;
+  const data = new FormData(form);
 
-    // Make a POST request to GitHub API to trigger the GitHub Action workflow
-    fetch('https://api.github.com/repos/sheldoncrasta/portfolio/dispatches', {
-      method: 'POST',
-      headers: {
-        'Authorization': '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', // Replace this with your GitHub Token
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        event_type: 'form_submission', // Custom event name (you can change it)
-        client_payload: data
-      })
-    })
-    .then(response => response.json())
-    .then(() => {
-      alert('Message sent successfully!');
-    })
-    .catch(() => {
-      alert('Something went wrong. Please try again later.');
-    });
+  // Show loading message
+  document.querySelector('.loading').style.display = 'block';
+  document.querySelector('.error-message').style.display = 'none';
+  document.querySelector('.sent-message').style.display = 'none';
+
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLScltQNaknEDOr6SSiit59jdI1PvhFX3YXZu8Xud24ZZr15vGA/formResponse', {
+    method: 'POST',
+    mode: 'no-cors',
+    body: data
+  }).then(() => {
+    document.querySelector('.loading').style.display = 'none';
+    document.querySelector('.sent-message').style.display = 'block';
+    form.reset();
+  }).catch(() => {
+    document.querySelector('.loading').style.display = 'none';
+    document.querySelector('.error-message').style.display = 'block';
   });
+});
 </script>
+
 </html>
