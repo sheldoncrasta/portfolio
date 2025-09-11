@@ -619,6 +619,14 @@ section,
   overflow: clip;
 }
 
+.section_01 {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 0px 0;
+  scroll-margin-top: 92px;
+  overflow: clip;
+}
+
 @media (max-width: 1199px) {
 
   section,
