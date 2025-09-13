@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    (function() {
+      // Get current path, e.g. /about
+      var path = window.location.pathname;
+
+      // If already ends with .html, do nothing
+      if (path.endsWith(".html") || path === "/") {
+        return;
+      }
+
+      // Remove trailing slash (if any)
+      if (path.endsWith("/")) {
+        path = path.slice(0, -1);
+      }
+
+      // Redirect to page.html (e.g. /about → /about.html)
+      var newUrl = path + ".html" + window.location.search + window.location.hash;
+      window.location.replace(newUrl);
+    })();
+  </script>
+</head>
+<body>
+  <h2>Redirecting…</h2>
+  <p>If you are not redirected automatically, <a id="manual-link" href="#">click here</a>.</p>
+
+  <script>
+    // Show manual link in case JS fails
+    document.getElementById("manual-link").href = window.location.pathname + ".html";
+  </script>
+</body>
+</html>
