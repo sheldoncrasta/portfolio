@@ -49,12 +49,12 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero">Home<br></a></li>
-          <li><a href="../#about">About</a></li>
-		  <li><a href="../#resume">Resume</a></li>
-          <li><a href="../#services">Expertise</a></li>
-          <li><a href="../#portfolio" class="active">Portfolio</a></li>
-		  <li><a href="../#contact">Contact</a></li>
+          <li><a href="../#hero" data-target="#hero">Home<br></a></li>
+          <li><a href="../#" data-target="#about">About</a></li>
+		  <li><a href="../#" data-target="#resume">Resume</a></li>
+          <li><a href="../#" data-target="#services">Expertise</a></li>
+          <li><a href="../#" data-target="#portfolio" class="active">Portfolio</a></li>
+		  <li><a href="../#" data-target="#contact">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Resources</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="../assets/img/downloads/Sheldon_Crasta_Business Analyst_Resume.pdf" target="_blank">Download Resume</a></li>
@@ -279,5 +279,17 @@
   <script src="../assets/js/main.js"></script>
 
 </body>
+
+<script>
+    document.querySelectorAll("a[data-target]").forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const target = document.querySelector(link.dataset.target);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    });
+  </script>
 
 </html>
