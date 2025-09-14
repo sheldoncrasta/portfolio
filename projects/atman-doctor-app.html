@@ -50,7 +50,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="../#hero" data-target="#hero">Home<br></a></li>
-          <li><a href="../#" data-target="#about">About</a></li>
+          <li><a href="../index.html?goto=about">About</a></li>
 		  <li><a href="../#" data-target="#resume">Resume</a></li>
           <li><a href="../#" data-target="#services">Expertise</a></li>
           <li><a href="../#" data-target="#portfolio" class="active">Portfolio</a></li>
@@ -281,15 +281,32 @@
 </body>
 
 <script>
-    document.querySelectorAll("a[data-target]").forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        const target = document.querySelector(link.dataset.target);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth" });
-        }
-      });
+document.addEventListener("DOMContentLoaded", () => {
+  // Detect ?goto=... in the URL
+  const params = new URLSearchParams(window.location.search);
+  const targetId = params.get("goto");
+
+  if (targetId) {
+    const target = document.querySelector("#" + targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+
+      // Clean URL (remove ?goto=about from address bar)
+      history.replaceState(null, null, window.location.pathname);
+    }
+  }
+
+  // Handle nav clicks inside index.html
+  document.querySelectorAll("a[data-target]").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const target = document.querySelector(link.dataset.target);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
     });
-  </script>
+  });
+});
+</script>
 
 </html>
