@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Aham – AI-Powered Medical Diagnostics App</title>
+  <title>Google Data Analytics Capstone – Customer & Sales Insights</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -41,7 +41,7 @@
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="../index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="../assets/img/favicon.png" alt="">
         <h1 class="sitename">Sheldon Crasta</h1>
@@ -103,40 +103,147 @@
 
           <div class="col-lg-8" data-aos="fade-up">
             <div class="portfolio-description">
-              <h2>🤖 Aham – AI-Powered Medical Imaging App</h2>
-			  <h14 style="margin-left:40px;"><i>- AI-powered diagnostics for faster, smarter healthcare 🩻⚡</i></h14>
+              <h2>🚴‍♂️ Cyclistic Bike Share Case Study – Google Data Analytics Capstone</h2>
+			  <h14 style="margin-left:40px;"><i>- Understanding rider behavior to boost annual memberships 📊✨</i></h14>
               <br><br>
 			  
 			  <p>
-			  In many regions, timely access to <strong>medical equipment and expert diagnosis</strong> is a major challenge. Patients often face delays in identifying critical conditions like <strong>pneumonia or COVID-19</strong>, especially when diagnostic tools are unavailable or limited. This gap can result in late treatment and worsened health outcomes..
+			  <h5><strong> 🔎 Problem Statement</strong></h5>
+			  Cyclistic, a bike-share company in Chicago, serves two types of customers: <strong>casual riders</strong> who purchase single-ride or day passes, and <strong>annual members</strong> who pay for a yearly subscription. The company’s goal is to <strong>convert casual riders into annual members</strong> to increase revenue and ensure sustainable growth</strong>.<br><br>
+			  
+			  However, casual and member riders show different patterns in ride frequency, duration, and timing. Understanding these differences is crucial to <strong>target the right audience with tailored strategies</strong>.
 			  </p>
-			  <p>
-                📱 <strong>Aham</strong> was built to explore how <strong>machine learning can bridge this gap</strong> in healthcare. It is an Android application developed in Java, integrated with a <strong>Convolutional Neural Network (CNN) model</strong> built in Python. The app allows users to upload chest X-ray images, which are then analyzed by the trained model to detect whether the scan shows <strong>pneumonia, COVID-19, or a normal condition</strong>.
-              </p>
-              <p>
-                <strong>✨ Key Highlights</strong>
-				<ul>
-				<li><strong>🩻 X-Ray Scan Analysis</strong> – Upload chest X-rays for automated detection.</li>
+			  
+			  <p style="margin-top:30px;">
+			  <h5><strong>🛠️ Solution Approach</strong></h5>
+			  <strong>Data Cleaning & Preparation (Using R)</strong>
+				<ul><li>Standardized column names and formats across multiple monthly datasets.</li>
+				<li>Converted date and time columns into usable formats.</li>
+				<li>Merged datasets into a unified dataset for analysis.</li>
+				<li>Handled missing values and removed inconsistent or outlier data.</li></ul>
 
-				<li><strong>🤖 AI-Powered Diagnosis</strong> – CNN model trained to classify pneumonia, COVID-19, or normal.</li>
+				<strong>Exploratory Data Analysis (EDA)</strong>
+				<ul><li>Compared trip durations and frequencies between casual riders and annual members.</li>
+				<li>Analyzed seasonal and weekday/weekend trends to identify peak usage periods.</li>
+				<li>Evaluated popular start and end stations to understand rider behavior geographically.</li></ul>
 
-				<li><strong>📱 Android Interface</strong> User-friendly app built in Java for accessibility.</li>
+				<strong>Visualization & Dashboards</strong>
 
-				<li><strong>📑 Save & Share Reports</strong> – Results can be saved locally or shared instantly via email with doctors for remote consultation.</li>
+				<ul><li>Created interactive Tableau dashboards:
+				<ol type="1"><li>Usage & Trends Dashboard: Shows overall ride patterns, trip durations, and user type comparisons.</li>
+				<li>Geo-wise Station Popularity Dashboard: Visualizes station-wise usage to identify high-demand areas.</li></ol></li></ul>
 
-				<li><strong>🔬 Medical Field Research</strong> – Demonstrates how AI can assist where equipment or specialists are unavailable.</li>
+				<strong>Business Insights & Recommendations</strong>
+				<ul><li>Identified key trends that differentiate casual riders from members.</li>
+				<li>Recommended strategies for converting casual riders into annual members: location-based promotions, weekend incentives, loyalty programs, and targeted marketing campaigns.</li></ul>
+			  </p>
 
-				<li><strong>⚡ Fast Processing</strong> – Results generated within seconds, offering immediate feedback.</li></ul>
-              </p>
-			  <p>
-                <strong>✨ Tech Stack</strong>
-				<ul>
-				<li><strong>App Development:</strong> Java (Android)</li>
+			  <p style="margin-top:30px;">
+			  <h5><strong>🌟 Key Findings</strong></h5>
+			  <ul><li><strong>Trip Duration:</strong> Casual riders take longer trips on weekends → primarily leisure usage.</li>
+			  <li><strong>Ride Frequency:</strong> Members ride more frequently on weekdays → commuting dominates.</li>
+			  <li><strong>Seasonality:</strong> Peak usage occurs during summer months; tourist-heavy areas attract many casual riders.</li>
+			  <li><strong>Station Popularity:</strong> Some stations are under-utilized during off-peak hours → opportunities for promotions or incentives.</li></ul>
+			  </p>
+			  
+			  <!--Dashboad -->
+			  <section id="cyclistic-dashboards" style="padding: 2rem; background: #f9f9f9;">
+  <h2 style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">
+    📊 Dashboard
+  </h2>
+  <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+    Interactive Tableau visualizations analyzing user behavior, ride trends, and station-wise popularity 
+    for the <b>Cyclistic Bike Share Case Study</b>.
+  </p>
 
-				<li><strong>Model Training:</strong> Python (CNN – Convolutional Neural Network)</li>
+  <!-- Dashboard 2 -->
+  <div style="margin-bottom: 3rem;">
+    <h3 style="text-align: center; margin-bottom: 1rem;">🚴 Usage & Trends</h3>
+    <div class='tableauPlaceholder' id='viz1757860309104' style='position: relative'>
+      <noscript>
+        <a href='#'><img alt='Dashboard 2 ' src='https://public.tableau.com/static/images/Di/DivvyBikesCyclistVisualization/Dashboard2/1_rss.png' style='border: none' /></a>
+      </noscript>
+      <object class='tableauViz' style='display:none;'>
+        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+        <param name='embed_code_version' value='3' /> 
+        <param name='site_root' value='' />
+        <param name='name' value='DivvyBikesCyclistVisualization/Dashboard2' />
+        <param name='tabs' value='no' />
+        <param name='toolbar' value='yes' />
+        <param name='static_image' value='https://public.tableau.com/static/images/Di/DivvyBikesCyclistVisualization/Dashboard2/1.png' /> 
+        <param name='animate_transition' value='yes' />
+        <param name='display_static_image' value='yes' />
+        <param name='display_spinner' value='yes' />
+        <param name='display_overlay' value='yes' />
+        <param name='display_count' value='yes' />
+        <param name='language' value='en-US' />
+      </object>
+    </div>
+  </div>
 
-				<li><strong>Integration:</strong> ML model connected with Android app</li></ul>
-              </p>
+  <!-- Dashboard 1 -->
+  <div>
+    <h3 style="text-align: center; margin-bottom: 1rem;">📍 Station Popularity (Geo-Map)</h3>
+    <div class='tableauPlaceholder' id='viz1757860675803' style='position: relative'>
+      <noscript>
+        <a href='#'><img alt='Geowise Stations ' src='https://public.tableau.com/static/images/Di/DivvyBikesCyclistVisualization/Dashboard1/1_rss.png' style='border: none' /></a>
+      </noscript>
+      <object class='tableauViz' style='display:none;'>
+        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+        <param name='embed_code_version' value='3' /> 
+        <param name='site_root' value='' />
+        <param name='name' value='DivvyBikesCyclistVisualization/Dashboard1' />
+        <param name='tabs' value='no' />
+        <param name='toolbar' value='yes' />
+        <param name='static_image' value='https://public.tableau.com/static/images/Di/DivvyBikesCyclistVisualization/Dashboard1/1.png' /> 
+        <param name='animate_transition' value='yes' />
+        <param name='display_static_image' value='yes' />
+        <param name='display_spinner' value='yes' />
+        <param name='display_overlay' value='yes' />
+        <param name='display_count' value='yes' />
+        <param name='language' value='en-US' />
+      </object>
+    </div>
+  </div>
+</section>
+
+<!-- Tableau Scripts -->
+<script type='text/javascript'>                    
+  var divElement = document.getElementById('viz1757860309104');                    
+  var vizElement = divElement.getElementsByTagName('object')[0];
+
+  // Set a max-width to prevent horizontal scroll
+  divElement.style.maxWidth = '1200px';  // Adjust as needed
+  divElement.style.margin = '0 auto';     // center the viz
+
+  // Calculate height proportionally based on width (aspect ratio)
+  if (divElement.offsetWidth > 800) { 
+      vizElement.style.width = '100%';
+      vizElement.style.height = (divElement.offsetWidth * 0.55) + 'px';  // proportionate height
+  } else if (divElement.offsetWidth > 500) { 
+      vizElement.style.width = '100%';
+      vizElement.style.height = (divElement.offsetWidth * 0.55) + 'px';
+  } else { 
+      vizElement.style.width = '100%';
+      vizElement.style.height = '1200px';  // mobile height fallback
+  }
+
+  // Load Tableau JS
+  var scriptElement = document.createElement('script');                    
+  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+  vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
+
+<script type='text/javascript'>                    
+  var divElement2 = document.getElementById('viz1757860675803');                    
+  var vizElement2 = divElement2.getElementsByTagName('object')[0];                    
+  if ( divElement2.offsetWidth > 800 ) { vizElement2.style.width='100%';vizElement2.style.maxWidth='1080px';vizElement2.style.height=(divElement2.offsetWidth*0.75)+'px';vizElement2.style.maxHeight='1107px';} 
+  else if ( divElement2.offsetWidth > 500 ) { vizElement2.style.width='100%';vizElement2.style.maxWidth='1080px';vizElement2.style.height=(divElement2.offsetWidth*0.75)+'px';vizElement2.style.maxHeight='1107px';} 
+  else { vizElement2.style.width='100%';vizElement2.style.height='1227px';}                     
+  var scriptElement2 = document.createElement('script');                    
+  scriptElement2.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+  vizElement2.parentNode.insertBefore(scriptElement2, vizElement2);                
+</script>
 
               <!--<div class="testimonial-item">
                 <p>
@@ -149,7 +256,7 @@
                   <h3>Sara Wilsson</h3>
                   <h4>Designer</h4>
                 </div>
-              </div>-->
+              </div>
 			  
 			  <div class="portfolio-details-slider swiper init-swiper">
           <script type="application/json" class="swiper-config">
@@ -209,11 +316,20 @@
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
           <div class="swiper-pagination"></div>
-        </div><br>
+        </div>--><br>
 
-              <p style= "margin-bottom:80px;"><strong>🚀 Impact</strong><br><br>
-                Aham demonstrates how <strong>AI and mobile technology can bring critical diagnostic support</strong> to areas where medical equipment or expert availability is limited. By providing <strong>quick, accessible, and affordable image-based analysis</strong>, the app helps patients get timely insights. Most importantly, the ability to <strong>save results or share them directly with doctors remotely</strong> makes Aham not just a diagnostic tool, but also a bridge between patients and healthcare professionals. This ensures <strong>faster detection, improved collaboration, and timely medical intervention</strong> even in resource-constrained settings.
-              </p>
+            <p style="margin-top:30px;">
+			  <h5><strong>⚙️ Tech Stack</strong></h5>
+			  <ul><li><strong>Tools & Languages:</strong> R, Tableau</li>
+			  <li><strong>R Libraries Used:</strong> dplyr, lubridate, ggplot2, tidyr</li></ul>
+			</p>
+			<p style="margin-top:30px;">
+			  <h5><strong>📈 Impact & Recommendations</strong></h5>
+			  <ul><li>Targeted membership campaigns at <strong>tourist hotspots</strong> and high casual-use stations, especially on weekends.</li>
+			  <li>Introduced <strong>seasonal pricing discounts or promotions</strong> to encourage casual users to convert.</li>			  
+			  <li>Recommended a <strong>loyalty program or perks</strong> for frequent casual riders.</li>
+			  <li>Use Tableau dashboards for <strong>real-time monitoring</strong> of station usage and rider behavior. This will enable <strong>data-driven decisions</strong> to increase membership conversion and optimize operations.</li></ul>
+			</p><br><br>
               
             </div>
           </div>
@@ -222,10 +338,10 @@
             <div class="portfolio-info">
               <h3>Project information</h3>
               <ul>
-                <li><strong>Category</strong> Android</li>
-                <li><strong>Client</strong> Self</li>
-                <li><strong>Project date</strong> 13 August, 2022</li>
-                <li><strong>Application Status</strong> <a href="#">Decommissioned</a></li>
+                <li><strong>Category</strong> Case Studies</li>
+                <li><strong>Client</strong> Part of Certification</li>
+                <li><strong>Project date</strong> 22 May, 2023</li>
+                <li><strong>Application Status</strong> <a href="#">Live</a></li>
                 <!-- <li><a href="#" class="btn-visit align-self-start">Visit Website</a></li> -->
               </ul>
             </div>
