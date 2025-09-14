@@ -820,15 +820,33 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 </script>
 
 <script>
-    document.querySelectorAll("a[data-target]").forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        const target = document.querySelector(link.dataset.target);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth" });
-        }
-      });
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Handle when coming from subpages with ?goto=...
+  const params = new URLSearchParams(window.location.search);
+  const targetId = params.get("goto");
+
+  if (targetId) {
+    const target = document.querySelector("#" + targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+
+      // Clean the URL so ?goto=about disappears
+      history.replaceState(null, null, window.location.pathname);
+    }
+  }
+
+  // 2. Handle smooth scroll for in-page links with data-target
+  document.querySelectorAll("a[data-target]").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const target = document.querySelector(link.dataset.target);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
     });
-  </script>
+  });
+});
+</script>
+
 
 </html>
