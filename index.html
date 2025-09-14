@@ -821,22 +821,22 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Handle when coming from subpages with ?goto=...
   const params = new URLSearchParams(window.location.search);
   const targetId = params.get("goto");
 
+  // If there is ?goto=... scroll and clean
   if (targetId) {
     const target = document.querySelector("#" + targetId);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
-
-      // Clean the URL so both ?goto=... and index.html disappear
-      let cleanPath = window.location.pathname.replace("index.html", "");
-      history.replaceState(null, null, cleanPath);
     }
   }
 
-  // 2. Handle smooth scroll for in-page links with data-target
+  // Always remove ?goto=... and "index.html" from the URL
+  let cleanPath = window.location.pathname.replace("index.html", "");
+  history.replaceState(null, null, cleanPath);
+
+  // Smooth scroll for in-page links
   document.querySelectorAll("a[data-target]").forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
