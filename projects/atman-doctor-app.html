@@ -282,7 +282,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // Detect ?goto=... in the URL
+  // 1. Handle when coming from subpages with ?goto=...
   const params = new URLSearchParams(window.location.search);
   const targetId = params.get("goto");
 
@@ -291,12 +291,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
 
-      // Clean URL (remove ?goto=about from address bar)
-      history.replaceState(null, null, window.location.pathname);
+      // Clean the URL so both ?goto=... and index.html disappear
+      let cleanPath = window.location.pathname.replace("index.html", "");
+      history.replaceState(null, null, cleanPath);
     }
   }
 
-  // Handle nav clicks inside index.html
+  // 2. Handle smooth scroll for in-page links with data-target
   document.querySelectorAll("a[data-target]").forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
