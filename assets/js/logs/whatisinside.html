@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>testing the page 💖</title>
+<title>Madam Ji ka 20th Birthday hai....💖</title>
 <style>
 body {
   margin:0;
@@ -143,13 +143,14 @@ button:hover { transform:scale(1.1); }
 
 <!-- Gift Screen -->
 <div class="screen" id="s2">
-  <h2>Abhi apna Gift toh open karo🎁</h2>
+  <h2>Abhi apna Gift toh lo madam ji apne behen se bola tha na gift milega naa.....open toh karo abhi🎁</h2>
   <div id="giftBox" onclick="giftNextStep()">
     <div id="lid"></div>
     <span style="position:absolute;color:white;font-weight:bold;">🎁</span>
   </div>
-  <p id="giftMsg"></p>
-  <button id="giftTypingNextBtn" style="display:none;" onclick="showIrritation()">Next 💌</button>
+	<p id="giftMsg"></p>
+	<button id="startGiftTypingBtn" style="display:none;" onclick="startGiftTyping()">Gift mila toh click on Next 👉</button>
+	<button id="giftTypingNextBtn" style="display:none;" onclick="showIrritation()">Next 💌</button>
 </div>
 
 <!-- Irritation Screen -->
@@ -317,22 +318,44 @@ function giftNextStep(){
 
 function showGift(){
   show('s2');
-  const giftMsgEl=document.getElementById('giftMsg');
-  const nextBtn=document.getElementById('giftTypingNextBtn');
-  giftMsgEl.innerHTML=""; nextBtn.style.display='none';
 
-  let i=0;
-  typingSound.currentTime=0; typingSound.loop=true; typingSound.play().catch(e=>{});
+  const giftMsgEl = document.getElementById('giftMsg');
+  const startBtn = document.getElementById('startGiftTypingBtn');
+  const nextBtn = document.getElementById('giftTypingNextBtn');
+
+  giftMsgEl.innerHTML = "";
+  nextBtn.style.display = 'none';
+
+  // Show NEXT button first (instead of typing immediately)
+  startBtn.style.display = 'inline-block';
+}
+
+function startGiftTyping(){
+  const giftMsgEl = document.getElementById('giftMsg');
+  const startBtn = document.getElementById('startGiftTypingBtn');
+  const nextBtn = document.getElementById('giftTypingNextBtn');
+
+  startBtn.style.display = 'none';
+
+  let i = 0;
+
+  typingSound.currentTime = 0;
+  typingSound.loop = true;
+  typingSound.play().catch(e=>{});
 
   function typeChar(){
-    if(i<giftText.length){
-      giftMsgEl.innerHTML+=giftText[i++];
-      setTimeout(typeChar,25);
-    }else{
-      typingSound.pause(); typingSound.currentTime=0; typingSound.loop=false;
-      nextBtn.style.display='inline-block';
+    if(i < giftText.length){
+      giftMsgEl.innerHTML += giftText[i++];
+      setTimeout(typeChar, 25);
+    } else {
+      typingSound.pause();
+      typingSound.currentTime = 0;
+      typingSound.loop = false;
+
+      nextBtn.style.display = 'inline-block';
     }
   }
+
   typeChar();
 }
 
@@ -419,9 +442,9 @@ function startLetter() {
         Aur ek cheez Madam ji; phoolo bado, garam hote raho, cute lagte raho, tamtar wala chehra continue karte raho, aur smile karti raho 😘💖.
     </p>
 
-    <p style="font-size: 18px; color: #ff3366;"><strong>I love you. ❤️</strong></p>
+    <p style="font-size: 18px; color: #ff3366;"><strong>I love you more.....❤️</strong></p>
 
-    <p style="font-size: 16px; color:black;">Tera forever,<br>[Your Name]</p>
+    <p style="font-size: 16px; color:black;">Tera forever,<br>S.</p>
 </div>`;
 
 
