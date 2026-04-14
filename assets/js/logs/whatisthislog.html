@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>testing the page 💖</title>
+<style>
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  overflow:hidden;
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  height:100vh;
+}
+.screen {
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+.active { display:flex; }
+h1,h2 { margin:10px 0; }
+button {
+  padding:14px 22px;
+  border:none;
+  border-radius:12px;
+  background:#ff4d6d;
+  color:white;
+  font-size:16px;
+  margin-top:15px;
+  cursor:pointer;
+}
+button:hover { transform:scale(1.1); }
+.cake {
+  width:220px;
+  cursor:pointer;
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+  transition:transform 0.5s;
+}
+#moveBtn { position:absolute; }
+#letter,#giftMsg,#irritationText {
+  text-align:left;
+  max-width:600px;
+  line-height:1.6;
+  font-size:18px;
+  margin:auto;
+}
+/* Letter box only */
+#letter {
+  width: 90%;                 /* responsive width */
+  max-width: 600px;           /* desktop max */
+  background-color: #fffaf0;  /* off-white letter paper */
+  border-radius: 12px;
+  padding: 25px 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-y: auto;           /* scroll inside box if needed */
+  margin: 0 auto;             /* center horizontally */
+  max-height: 80vh;           /* prevent it from taking full screen */
+  box-sizing: border-box;
+}
+
+.heart,.sparkle {
+  position:fixed;
+  bottom:-20px;
+  opacity:0.85;
+  animation:floatUp 6s linear infinite;
+}
+.heart { font-size:40px; }
+.sparkle { font-size:30px; color:#fff59d; }
+@keyframes floatUp {
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  20%{opacity:1;}
+  100%{transform:translateY(-110vh) rotate(360deg);opacity:0;}
+}
+.confetti {
+  pointer-events: none;
+  z-index: 999;
+  user-select: none;
+  position: fixed;
+}
+#giftBox {
+  width:150px;
+  height:150px;
+  background:#ff4d6d;
+  position:relative;
+  cursor:pointer;
+  border-radius:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+#lid {
+  width:150px;
+  height:30px;
+  background:#ff8fab;
+  position:absolute;
+  top:0;
+  border-radius:12px;
+  transform-origin:top;
+  transition:transform 0.5s;
+}
+
+
+#heartbeat { animation:pulse 1s infinite; }
+@keyframes pulse { 0%{transform:scale(1);}50%{transform:scale(1.02);}100%{transform:scale(1);} }
+</style>
+</head>
+<body>
+
+<!-- Netflix Intro -->
+<div class="screen active" id="s0">
+  <h1 id="netflixText" style="font-size:40px;"></h1>
+  <button id="startJourneyBtn" onclick="startJourney()">Madam Ji ready ho naa? Chalo button pe click karke Start karo...🚀</button>
+  <button id="introNextBtn" style="display:none;" onclick="startCake()">Next 👉</button>
+</div>
+
+<!-- Cake Screen -->
+<div class="screen" id="s1">
+  <h2 id="heartbeat">Madam Ji, Pehele Candles blow kare....😏</h2>
+  <svg class="cake" onclick="blow()" viewBox="0 0 200 200">
+    <rect x="30" y="100" width="140" height="60" rx="10" fill="#ff8fab"/>
+    <rect x="40" y="60" width="120" height="50" rx="10" fill="#ffb3c6"/>
+    <rect x="60" y="30" width="8" height="30" fill="white"/>
+    <rect x="95" y="30" width="8" height="30" fill="white"/>
+    <rect x="130" y="30" width="8" height="30" fill="white"/>
+    <circle cx="64" cy="25" r="5" fill="orange" class="flame"/>
+    <circle cx="99" cy="25" r="5" fill="orange" class="flame"/>
+    <circle cx="134" cy="25" r="5" fill="orange" class="flame"/>
+  </svg>
+  <p id="cakeInstruction" style="display:none;"></p>
+  <button id="cakeNextBtn" style="display:none;" onclick="showGift()">Next 🎁</button>
+</div>
+
+<!-- Gift Screen -->
+<div class="screen" id="s2">
+  <h2>Abhi apna Gift toh open karo🎁</h2>
+  <div id="giftBox" onclick="giftNextStep()">
+    <div id="lid"></div>
+    <span style="position:absolute;color:white;font-weight:bold;">🎁</span>
+  </div>
+  <p id="giftMsg"></p>
+  <button id="giftTypingNextBtn" style="display:none;" onclick="showIrritation()">Next 💌</button>
+</div>
+
+<!-- Irritation Screen -->
+<div class="screen" id="s3">
+  <h2>😈 Catch me!</h2>
+  <p id="irritationText"></p>
+  <button id="moveBtn" onclick="irritate()">DON’T CLICK 😤</button>
+  <button id="revealLetterBtn" style="display:none;" onclick="startLetter()">Reveal Letter 💌</button>
+</div>
+
+<!-- Letter Screen -->
+<div class="screen" id="s4">
+  <h2>💌 Letter</h2>
+  <p id="letter"></p>
+</div>
+
+<audio id="typingSound" src="typewriter-1.mp3" preload="auto"></audio>
+<audio id="heartbeatSound" src="heartbeat-03.mp3" preload="auto" loop></audio>
+
+<script>
+(function(){
+  const now = new Date();
+  const start = new Date('2026-04-12T09:00:00'); // allowed start
+  const end = new Date('2026-04-12T23:03:00');   // allowed end
+
+  if(now < start || now > end){
+    window.location.href = 'underconstruction.html';
+  }
+})();
+
+
+/* --- INTRO --- */
+let introText="First of all Madam Ji, Happy 20th Birthday Nibbi 🐧💖";
+let introEl=document.getElementById('netflixText');
+let introBtn=document.getElementById('introNextBtn');
+let startBtn=document.getElementById('startJourneyBtn');
+let typingSound=document.getElementById('typingSound');
+let i=0;
+let introTypingSpeed=200;
+
+function startJourney(){
+  startBtn.style.display='none';
+  typeIntro();
+}
+
+function typeIntro(){
+  if(i<introText.length){
+    introEl.innerHTML+=introText[i++];
+    if(typingSound){typingSound.currentTime=0; typingSound.play().catch(e=>{});}
+    setTimeout(typeIntro,introTypingSpeed);
+  }else{
+    if(typingSound){typingSound.pause(); typingSound.currentTime=0;}
+    setTimeout(()=>{ introBtn.style.display='inline-block'; },900);
+  }
+}
+
+/* --- Hearts & Sparkles --- */
+function hearts(){setInterval(()=>{let h=document.createElement("div");h.className="heart";h.innerHTML="💖";h.style.left=Math.random()*100+"vw";document.body.appendChild(h);setTimeout(()=>h.remove(),6000);},500);}
+function sparkles(){setInterval(()=>{let s=document.createElement("div");s.className="sparkle";s.innerHTML="✨";s.style.left=Math.random()*100+"vw";document.body.appendChild(s);setTimeout(()=>s.remove(),4000);},800);}
+
+/* --- FLOW CONTROL --- */
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");}
+
+let cakeInstructionShown=false;
+let blown=false;
+
+function startCake(){
+  show('s1'); hearts(); sparkles();
+  document.getElementById('heartbeatSound').play();
+
+  setTimeout(()=>{
+    if(!blown){
+      const cakeInstruction = document.getElementById('cakeInstruction');
+      cakeInstruction.style.display='block';
+      let text="Madam ji, yeh cake virtual hai 😏, pls click to blow!";
+      let idx=0;
+
+      typingSound.currentTime=0; typingSound.loop=true; typingSound.play().catch(e=>{});
+
+      function typeCakeInstr(){
+        if(idx<text.length){
+          cakeInstruction.innerHTML+=text[idx++];
+          setTimeout(typeCakeInstr,50);
+        }else{
+          cakeInstructionShown=true;
+          typingSound.pause(); typingSound.currentTime=0; typingSound.loop=false;
+        }
+      }
+      typeCakeInstr();
+    }
+  },1500);
+}
+
+function blow() {
+  if (blown) return;
+  blown = true;
+
+  const cakeInstruction = document.getElementById('cakeInstruction');
+  const heartbeatEl = document.getElementById('heartbeat');
+
+  // Fade out the cake instruction smoothly
+  cakeInstruction.style.transition = "opacity 0.8s"; // smooth fade
+  cakeInstruction.style.opacity = 0;
+  setTimeout(() => {
+    cakeInstruction.style.display = 'none';
+    cakeInstruction.innerHTML = "";
+    cakeInstruction.style.opacity = 1; // reset for next time
+  }, 800); // match the transition duration
+
+  // Fade out the heartbeat text
+  heartbeatEl.style.transition = "opacity 0.3s";
+  heartbeatEl.style.opacity = 0;
+  setTimeout(() => heartbeatEl.style.display = 'none', 500);
+
+  // Remove flames
+  document.querySelectorAll(".flame").forEach(f => f.remove());
+
+  // Generate confetti
+  for (let i = 0; i < 40; i++) {
+    createConfetti(0, "bottom-left");
+    createConfetti(window.innerWidth - 40, "bottom-right");
+  }
+
+  // Show next button after a short delay
+  setTimeout(() => document.getElementById('cakeNextBtn').style.display = 'inline-block', 1200);
+}
+
+function createConfetti(startX,corner){
+  let c=document.createElement("div"); c.className="confetti";
+  c.style.fontSize=`${Math.random()*24+16}px`;
+  c.innerHTML=["🎉","🥳","🌸","🎊","💫","🎈","👏","🎠"][Math.floor(Math.random()*8)];
+  c.style.left=startX+"px"; c.style.bottom="0px";
+  document.body.appendChild(c);
+
+  let xDrift=(corner==="bottom-left")? Math.random()*200+100 : -(Math.random()*200+700);
+  let yDest=window.innerHeight+Math.random()*200+100;
+  let rotation=(Math.random()-0.5)*720;
+  const duration=Math.random()*3000+3000;
+
+  c.animate([{transform:"translate(0,0) rotate(0deg)",opacity:1},{transform:`translate(${xDrift}px,-${yDest}px) rotate(${rotation}deg)`,opacity:0}],{duration:duration,easing:"ease-out",fill:"forwards"});
+  setTimeout(()=>c.remove(),duration);
+}
+
+/* --- GIFT --- */
+let giftStep=false;
+let giftText=`Accha sun 😌
+Yeh tera surprise gift hai 🎁
+
+Jhola that can have books & girls’ stuff...etc in one 😏
+Chapal 😂 (mat marna 😆)
+Crystal ball + dream catcher 👻
+Bottle & book 📚
+Sunflower 🌻 — din suraj, raat ek dusre; main hamesha tumhari brightness & cuteness se pyaar 💖
+
+Aur birthday promise yaad hai? 😆
+Yeh lo, apka promise band ❤️`;
+
+function giftNextStep(){
+  if(!giftStep){
+    document.getElementById('lid').style.transform='rotateX(-120deg)';
+    giftStep=true;
+    showGift();
+  }
+}
+
+function showGift(){
+  show('s2');
+  const giftMsgEl=document.getElementById('giftMsg');
+  const nextBtn=document.getElementById('giftTypingNextBtn');
+  giftMsgEl.innerHTML=""; nextBtn.style.display='none';
+
+  let i=0;
+  typingSound.currentTime=0; typingSound.loop=true; typingSound.play().catch(e=>{});
+
+  function typeChar(){
+    if(i<giftText.length){
+      giftMsgEl.innerHTML+=giftText[i++];
+      setTimeout(typeChar,25);
+    }else{
+      typingSound.pause(); typingSound.currentTime=0; typingSound.loop=false;
+      nextBtn.style.display='inline-block';
+    }
+  }
+  typeChar();
+}
+
+/* --- IRRITATION --- */
+let irrMsgs=[
+  "Arre Nibha, yeh button phir se bhaag gaya 😤",
+	"Madam ji, gussa mat ho… ya phir ho jao 😆",
+	"Tere patience ka level seriously test ho raha hai 😏",
+	"Arre ruk ja! Pehle button ko pakad… agar pakad paogi 😜",
+	"Bas thoda aur… ya nahi? 😏",
+	"Areee! Yeh button phir se kahan gaya 😡",
+	"Abey Nibha, itna patience ka test? Tum chhodo ya main chhod doon? 🤪",
+	"Pakad ke rakh lo isko warna yeh bhaag lega! 😤",
+	"Thoda aur struggle, phir treat milegi 😘",
+	"Chalo, abhi apka birthday hai toh leloh...."
+];
+let irrIndex=0;
+
+function showIrritation(){
+  show('s3');
+}
+
+function irritate(){
+  let el=document.getElementById('irritationText'); el.innerHTML="";
+  let text=irrMsgs[irrIndex%irrMsgs.length]; irrIndex++;
+  let i=0;
+
+  typingSound.currentTime=0; typingSound.loop=true; typingSound.play().catch(e=>{});
+
+  function typing(){
+    if(i<text.length){
+      el.innerHTML+=text[i++];
+      setTimeout(typing,25);
+    }else{
+      typingSound.pause(); typingSound.currentTime=0; typingSound.loop=false;
+      if(irrIndex>=irrMsgs.length){
+        document.getElementById('revealLetterBtn').style.display='inline-block';
+        let btn=document.getElementById('moveBtn'); btn.style.opacity=0;
+        setTimeout(()=>{btn.style.display='none';},500);
+      }
+    }
+  }
+  typing();
+
+  let b=document.getElementById('moveBtn');
+  if(b.style.display!=='none'){
+    b.style.left=Math.random()*(window.innerWidth-120)+"px";
+    b.style.top=Math.random()*(window.innerHeight-80)+"px";
+  }
+}
+
+/* --- LETTER --- */
+function startLetter() {
+    show("s4");
+
+    const text = `<div style="font-family: 'Poppins', 'Segoe UI', sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: 20px auto; padding: 20px; background-color: #fff0f5; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <p style="font-size: 20px; color: #ff3366;">My Lovie-Dovie,</p>
+
+    <p style="font-size: 16px; color:black;">
+        Pehle toh <strong>Happy Birthday</strong>, meri cute HR madam ji! 🎉💖 20 saal ke ho gayi ho, aur main 23 ka hoon (8th April ko birthday celebrate kiya tha 😎). Waise yaar, yaad hai na 3rd Feb ko Juhu mein tumne propose kiya tha? Tab se meri life kaafi colorful ho gayi hai.
+    </p>
+
+    <p style="font-size: 16px; color:black;">
+        Aur phir humne shuru kiya apni Saturday ki <strong>Versova adventures</strong> – 7am se 1pm tak… aur sach bolun toh, main kabhi soch bhi nahi sakta tha ki Saturday ka din itna special ho sakta hai 😅. Aur yaad hai 28th Feb, main propose kiya tumhe wahi Versova mein… exams ke time bhi sirf tumhare baare mein soch raha tha, padhai ke bajaye, jo pehli baar hua tha.
+    </p>
+
+    <p style="font-size: 16px; color:black;">
+        Ab hum subah baatein karte hain, office mein chhupke chat karte hain (HR & Sr. Business Analyst combo, hai na mast 😏). Hum fight karte hain, phir make up karte hain, aur main jaanta hoon ki kabhi kabhi main tumhe zyada poke kar deta hoon 😅… lekin madam, please udaas mat ho! Angry lagti ho toh cute lagti ho, par sad ho toh “hotness level” gir jaata hai 😜. Aur haan, 20 saal ke ho gayi ho, bas overthinking chhodo 😘.
+    </p>
+
+    <p style="font-size: 16px; color:black;">
+        Aur haan, meri pyaari hotness, hamesha wohi hotness banaye raho. Madam ji, “being hot” ka level maintain hona chahiye! 😎🔥
+    </p>
+
+    <p style="font-size: 16px; color:black;">
+        Tum meri <strong>Lovie</strong> ho, meri <strong>Dovie</strong> ho, aur jo promise tumne mujhe kiya hai na… bas present ke liye sochna, aur future, marriage sab mere haath mein hai. Ek din main tumhe <strong>“Mrs. Crasta”</strong> banane wala hoon, so chill kar jao! 😘
+    </p>
+
+    <p style="font-size: 16px; color:black;">
+        Aur haan, ek chhoti si baat – tumhe kabhi kabhi khana bhi banana padega, haan haan, funny way mein, bas smile ke saath 😄🍲.
+    </p>
+
+    <p style="font-size: 16px; color:black;">
+        Aur ek cheez Madam ji; phoolo bado, garam hote raho, cute lagte raho, tamtar wala chehra continue karte raho, aur smile karti raho 😘💖.
+    </p>
+
+    <p style="font-size: 18px; color: #ff3366;"><strong>I love you. ❤️</strong></p>
+
+    <p style="font-size: 16px; color:black;">Tera forever,<br>[Your Name]</p>
+</div>`;
+
+
+    const el = document.getElementById("letter");
+    el.innerHTML = "";
+
+    let i = 0;
+    let typingSoundPlaying = false;
+
+    function typing() {
+        if (!typingSoundPlaying) {
+            typingSound.currentTime = 0;
+            typingSound.loop = true;
+            typingSound.play().catch(() => {});
+            typingSoundPlaying = true;
+        }
+
+        if (i < text.length) {
+            if (text[i] === "<") {
+                // Copy entire tag at once
+                const endTag = text.indexOf(">", i);
+                if (endTag !== -1) {
+                    el.innerHTML += text.slice(i, endTag + 1);
+                    i = endTag + 1;
+                } else {
+                    el.innerHTML += text[i++];
+                }
+            } else {
+                el.innerHTML += text[i++];
+            }
+            setTimeout(typing, 25);
+        } else {
+            typingSound.pause();
+            typingSound.currentTime = 0;
+            typingSound.loop = false;
+        }
+    }
+
+    typing();
+}
+</script>
+</body>
+</html>
